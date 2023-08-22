@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import Card from "./Components/Card";
 
 function App() {
-  const [cryptoData, setCryptoData] = useState([]); // Initialize with an empty array
+  const [cryptoData, setCryptoData] = useState([]);
   const API =
     "https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=100&page=1&sparkline=false";
 
@@ -13,33 +14,28 @@ function App() {
     try {
       const res = await fetch(url);
       const data = await res.json();
-      setCryptoData(data); // Store the fetched data in state
+      console.log("data fetch" , data)
+      setCryptoData(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
   return (
-    <div className="justify-center items-center">
-      <h1 className="text-center text-3xl">Crypto Dashboard</h1>
-      <div>
-        {cryptoData.map((crypto) => (
-          <div key={crypto.id}>
-            <img src={crypto.image} alt={`${crypto.name} logo`} />
-            <div>
-              <div>
-                <span>{crypto.name}</span>
-                <span>{crypto.current_price}</span>
-              </div>
-              <div>
-                <span>{crypto.symbol}</span>
-                <span>{crypto.price_change_percentage_24h}%</span>
-              </div>
-            </div>
-          </div>
-        ))}
+    <>
+      
+    <div className="flex justify-center items-center">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {cryptoData.length === 0 ? (
+          <div>Loading....</div>
+        ) : (
+          cryptoData.map((crypto) => (
+            <Card key={crypto.id} crypto={crypto} />
+          ))
+        )}
       </div>
     </div>
+    </>
   );
 }
 

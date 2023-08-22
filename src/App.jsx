@@ -30,7 +30,14 @@ function App() {
           <div>Loading....</div>
         ) : (
           cryptoData.map((crypto) => (
+            <>
+
+            <div>
+            <h1>Crypto</h1>
+
             <Card key={crypto.id} crypto={crypto} />
+            </div>
+            </>
           ))
         )}
       </div>

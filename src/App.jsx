@@ -23,8 +23,8 @@ function App() {
 
   return (
     <>
-      
     <div className="flex justify-center items-center bg-slate-400">
+ main
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {cryptoData.length === 0 ? (
           <div>Loading....</div>

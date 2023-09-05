@@ -23,12 +23,15 @@ function App() {
   };
 
   return (
+
     <div className="flex h-full w-full justify-center items-center bg-red-100">
       <Heading />
       <div className="flex flex-wrap justify-center items-center">
         {cryptoData.map((crypto) => (
           <Card key={crypto.id} crypto={crypto} />
         ))}
+
+  
       </div>
     </div>
   );
